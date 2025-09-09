@@ -88,3 +88,34 @@ CREATE TABLE Attendance (
     FOREIGN KEY (classID) REFERENCES Classes(classID),
     FOREIGN KEY (studentID) REFERENCES Students(studentID)
 );
+
+-- Payments table
+CREATE TABLE Payments (
+    paymentID INT AUTO_INCREMENT PRIMARY KEY,
+    studentID INT,
+    amount DECIMAL(10,2) NOT NULL,
+    paymentDate DATE NOT NULL,
+    method ENUM('Cash', 'Card', 'Mpesa', 'Bank') NOT NULL,
+    FOREIGN KEY (studentID) REFERENCES Students(studentID)
+);
+
+-- LibraryBooks table
+CREATE TABLE LibraryBooks (
+    bookID INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(100),
+    isbn VARCHAR(20) UNIQUE,
+    category VARCHAR(50),
+    availableCopies INT DEFAULT 0
+);
+
+-- Borrowing table
+CREATE TABLE Borrowing (
+    borrowID INT AUTO_INCREMENT PRIMARY KEY,
+    studentID INT,
+    bookID INT,
+    borrowDate DATE NOT NULL,
+    returnDate DATE,
+    FOREIGN KEY (studentID) REFERENCES Students(studentID),
+    FOREIGN KEY (bookID) REFERENCES LibraryBooks(bookID)
+);
