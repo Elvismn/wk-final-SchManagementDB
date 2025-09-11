@@ -119,3 +119,18 @@ CREATE TABLE Borrowing (
     FOREIGN KEY (studentID) REFERENCES Students(studentID),
     FOREIGN KEY (bookID) REFERENCES LibraryBooks(bookID)
 );
+
+-- Indexes for performance
+CREATE INDEX idx_student_department ON Students(departmentID);
+CREATE INDEX idx_teacher_department ON Teachers(departmentID);
+CREATE INDEX idx_course_department ON Courses(departmentID);
+CREATE INDEX idx_course_teacher ON Courses(teacherID);
+CREATE INDEX idx_enrollment_student ON Enrollments(studentID);
+CREATE INDEX idx_enrollment_course ON Enrollments(courseID);
+CREATE INDEX idx_grades_enrollment ON Grades(enrollmentID);
+CREATE INDEX idx_classes_course ON Classes(courseID);
+CREATE INDEX idx_attendance_student ON Attendance(studentID);
+CREATE INDEX idx_attendance_class ON Attendance(classID);
+CREATE INDEX idx_payments_student ON Payments(studentID);
+CREATE INDEX idx_borrowing_student ON Borrowing(studentID);
+CREATE INDEX idx_borrowing_book ON Borrowing(bookID);
